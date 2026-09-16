@@ -1,0 +1,14 @@
+// 원의 크기가 점점 증가2
+
+int r = 0;	// (전역)변수 선언 및 초기화
+
+void setup() {
+  size(300, 300);
+}
+
+void draw() {
+  background(0);
+  ellipse(150, 150, r, r);
+  r = r + 1;		// r은 1씩 증가
+  println("r = " + r);
+}

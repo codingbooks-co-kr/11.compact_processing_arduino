@@ -1,0 +1,19 @@
+// 마우스가 원 안에 들어오면 원의 색상 변경
+
+float d, r = 100.0;
+
+void setup() {
+  size(300, 300);
+}
+
+void draw() {
+  background(0);
+  d = dist(width/2, height/2, mouseX, mouseY);	// 원의 중심에서 마우스까지의 거리
+  if (d < r) {						// 마우스가 원 안에 들어오면
+    fill(255, 0, 0);
+  } else {						// 마우스가 원 밖에 있을 때
+    fill(255, 255, 255);
+  }
+  ellipse(width/2, height/2, r*2, r*2);
+  println(d);
+}

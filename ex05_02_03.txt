@@ -1,0 +1,18 @@
+// LED가 점점 밝아짐 (while문)
+
+#define LED 6
+
+void setup() {
+  pinMode(LED, OUTPUT);
+}
+
+void loop() {
+  int i = 0;			// 초기식
+  while(i < 256) {		// while(조건식)
+    analogWrite(LED, i);
+    delay(10);
+    i++;			// 증가식
+  }
+  digitalWrite(LED, 0);
+  delay(500);
+}

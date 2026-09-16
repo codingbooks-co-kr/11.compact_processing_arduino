@@ -1,0 +1,19 @@
+// 마우스를 누르는 좌표에 원 생성
+
+float x, y, d = 50.0;
+
+void setup() {
+  size(500, 500);
+  background(0);
+}
+
+void draw() {
+  noStroke();
+  fill(255, 255, 0);
+  ellipse(x, y, d, d);		// 마우스를 누른 위치 좌표 (x,y)에 원 그리기
+}
+
+void mousePressed() {	// 마우스를 누른 위치 좌표 (x,y)를 저장
+  x = mouseX;
+  y = mouseY;
+}

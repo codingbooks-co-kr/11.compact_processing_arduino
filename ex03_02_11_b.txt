@@ -1,0 +1,22 @@
+// 가변저항으로 DC모터의 속도 조절
+
+#define VARIABLE_R A1
+#define DCMOTOR_FWD 9
+#define DCMOTOR_BWD 10
+
+void setup() {
+  pinMode(VARIABLE_R, INPUT);
+  pinMode(DCMOTOR_FWD, OUTPUT);
+  pinMode(DCMOTOR_BWD, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int value = analogRead(VARIABLE_R);
+  int speed = map(value, 0, 1023, 0, 255);
+  analogWrite(DCMOTOR_FWD, speed);
+  analogWrite(DCMOTOR_BWD, 0);
+  Serial.print("Speed: ");
+  Serial.println(speed);
+  delay(100);
+}

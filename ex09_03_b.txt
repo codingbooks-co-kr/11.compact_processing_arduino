@@ -1,0 +1,25 @@
+// 프로세싱: 조도센서값 수신, 사각형 이동
+
+import processing.serial.*;
+Serial port;
+int value = 0;
+
+void setup( ) {
+  size(300, 500);
+  port = new Serial(this, "COM3", 9600);
+}
+
+void draw() {
+  // 페이딩 효과 구현
+  fill(0, 10);
+  noStroke();
+  rect(0, 0, width, height);
+
+  fill(255, 255, 0);
+  float h = map(value, 0, 255, 0, height);
+  rect(50, h, 200, 20);
+}
+
+void serialEvent(Serial port) {
+  value = port.read();
+}

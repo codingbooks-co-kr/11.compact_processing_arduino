@@ -1,0 +1,16 @@
+// 아두이노: 정숫값 수신 후 부저 주파수 제어
+
+#define BUZZER 13
+
+void setup() {
+  pinMode(BUZZER, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() { }
+
+// 수신값이 있으면 자동 호출
+void serialEvent() {
+  int value = Serial.parseInt();
+  tone(BUZZER, value, 500);
+}

@@ -1,0 +1,21 @@
+// 프로세싱: 마우스 x축 좌표값(0∼255) 송신
+
+import processing.serial.*; 
+Serial port; 
+
+void setup() {
+  size(500, 200);
+  port = new Serial(this, "COM3", 9600);
+}
+
+void draw() {
+  background(0);
+  int value = int(map(mouseX, 0, width, 0, 255));
+  port.write(value);
+
+  textSize(30);
+  fill(255, 255, 0);
+  text("LED Brightness: " + nf(value, 3), 20, 30);
+
+  ellipse(mouseX, height/2, 80, 80);
+}

@@ -1,0 +1,30 @@
+// 프로세싱: 가변저항값 2개 수신하여 원 이동 2
+
+import processing.serial.*;
+Serial port;
+float value1 = 0, value2 = 0;
+
+void setup() {
+  size(500, 500);
+  port = new Serial(this, "COM3", 9600);
+}
+
+void draw() {
+  // 페이딩 효과
+  fill(0, 10);				// 투명도 부여
+  noStroke();				// 외곽선 제거
+  rect(0, 0, width, height);		// 사각형 크기를 실행창과 동일하게 설정
+
+  fill(255, 255, 0);
+  ellipse(value1, value2, 50, 50);
+}
+
+void serialEvent(Serial port) {			// 시리얼 버퍼에 값이 들어오면 자동 호출
+  String str = port.readStringUntil('\n');		// 종료문자l('\n')까지의 수신 문자열 읽기
+  if (str != null) {				// 수신 문자열이 있는 경우
+    String s = trim(str);			// 문자열 앞·뒤의 공백 제거
+    String[] value = split(s, ",");		// 콤마로 구분된 문자열을 배열에 저장
+    value1 = map(float(value[0]), 0, 1023, 0, width);
+    value2 = map(float(value[1]), 0, 1023, 0, height);
+  }
+}

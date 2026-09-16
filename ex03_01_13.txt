@@ -1,0 +1,12 @@
+// 마우스를 따라 움직이는 점 (굵기와 색상을 랜덤하게 만들기)
+
+void setup() {
+  size(500, 500);
+  background(0);
+}
+
+void draw() {
+  strokeWeight(random(50));				// 점의 굵기를 랜덤 설정
+  stroke(random(255), random(255), random(255));	// 점의 색상을 랜덤 설정
+  point(mouseX, mouseY);				// 현재 마우스 위치에 점 그리기
+}

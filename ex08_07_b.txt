@@ -1,0 +1,28 @@
+// 프로세싱: 마우스 x, y축 위치 값(0∼255) 송신
+
+import processing.serial.*; 
+Serial port; 
+int value1 = 0, value2 = 0;
+
+void setup() {
+  size(500, 500);
+  port = new Serial(this, "COM3", 9600);
+}
+
+void draw() {
+  background(0);
+  value1 = int(map(mouseX, 0, width, 0, 180));	// 서보모터 각도값
+  value2 = int(map(mouseY, 0, height, 0, 255));	// LED 밝기값
+
+  fill(255, 255, 0);
+  textSize(30);
+  text("Angle: " + nf(value1, 3), 10, 50);
+  text("Brightness: " + nf(value2, 3), 10, 100);
+
+  fill(255, 200);
+  ellipse(mouseX, mouseY, 50, 50);
+
+  port.write('A');     					// 동기신호 송신
+  port.write(value1);					// 서보모터 각도값 송신
+  port.write(value2);					// LED 밝기값 송신
+}

@@ -1,0 +1,23 @@
+// 프로세싱: 마우스 클릭값(정수: 0,1) 송신
+
+import processing.serial.*;			// 시리얼 통신 라이브러리 불러오기
+Serial port;					// Serial 객체 선언
+
+void setup() {
+  size(500, 200);
+  port = new Serial(this, "COM3", 9600);	// Serial 객체 생성(포트, 통신속도 설정)
+}
+
+void draw() {
+  background(0);
+  fill(255, 255, 0);
+  textAlign(CENTER);
+  textSize(50);
+  if (mousePressed) {
+    text("LED ON", width/2, height/2);
+    port.write(1);        // 1 송신
+  } else {
+    text("LED OFF", width/2, height/2);
+    port.write(0);        // 0 송신
+  }
+}

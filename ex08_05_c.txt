@@ -1,0 +1,11 @@
+int a = 12;
+String sa = nf(a, 3);		// 정수인 경우
+String sb = nf(a, 5);		// 정수인 경우
+println(sa);
+println(sb);
+
+float b = 10.5;
+String sc = nf(b, 0, 2);		// 실수인 경우
+String sd = nf(b, 4, 2);	// 실수인 경우
+println(sc);
+println(sd);

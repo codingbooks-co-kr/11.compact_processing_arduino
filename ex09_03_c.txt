@@ -1,0 +1,17 @@
+// 조도센서의 MIN 및 MAX 값 확인
+
+#define LIGHT A3
+#define MIN 100	// 주위의 밝기에 따라 수정 요! (센서를 완전히 가린 상태)
+#define MAX 300	// 주위의 밝기에 따라 수정 요! (센서를 가리지 않은 상태)
+
+void setup() {
+  pinMode(LIGHT, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int value = analogRead(LIGHT);	// 조도센서값 읽기
+  Serial.print("LIGHT: ");
+  Serial.println(value);			// 조도센서값의 MIN, MAX값 확인
+  delay(100);
+}

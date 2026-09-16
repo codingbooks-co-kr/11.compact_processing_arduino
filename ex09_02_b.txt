@@ -1,0 +1,24 @@
+// 프로세싱: 가변저항값 수신, 원 크기 변화
+
+import processing.serial.*;
+Serial port;
+int value = 0;
+
+void setup( ) {
+  size(500, 500);
+  port = new Serial(this, "COM3", 9600);
+}
+
+void draw() {
+  background(0);
+  int size = int(map(value, 0, 255, 0, width));
+  fill(255, 255, 0);
+  textSize(30);
+  text("Diameter: " + nf(size, 3), 10, 50);
+  ellipse(width/2, height/2, size, size);
+}
+
+// 수신값이 있으면 자동 호출
+void serialEvent(Serial port) {
+  value = port.read();
+}

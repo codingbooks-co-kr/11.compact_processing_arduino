@@ -1,0 +1,31 @@
+// 프로세싱: 키보드 정수(1∼4) 송신
+
+import processing.serial.*;
+Serial port;
+
+void setup() {
+  size(500, 200);
+  port = new Serial(this, "COM3", 9600);
+}
+
+void draw() {
+  background(0);
+  fill(255, 255, 0);
+  textAlign(CENTER);
+  textSize(50);
+  text("Key: " + key, width/2, height/2);
+}
+
+void keyPressed() {
+  if (key == '1') {
+    port.write(1);		// 1 송신
+  } else if (key == '2') {
+    port.write(2);		// 2 송신
+  } else if (key == '3') {
+    port.write(3);		// 3 송신
+  } else if (key == '4') {
+    port.write(4);		// 4 송신
+  } else {
+    port.write(0);		// 0 송신
+  }
+}

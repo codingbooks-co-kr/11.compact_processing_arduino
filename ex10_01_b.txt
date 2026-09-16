@@ -1,0 +1,26 @@
+// 프로세싱 (인터럽트 방식): 마우스 x축 위치값(0∼255) 송신
+
+import processing.serial.*; 			// 시리얼 통신 라이브러리 불러오기
+Serial port; 					// Serial 객체 선언
+int  value = 0;
+
+void setup() {
+  size(500, 200);
+  port = new Serial(this, "COM3", 9600);	// Serial 객체 생성(포트, 통신속도 설정)
+}
+
+void draw() {
+  background(0);
+  value = int(map(mouseX, 0, width, 0, 255));		// 송신값을 1바이트(0∼255)로 변경
+
+  textSize(30);
+  fill(255, 255, 0);
+  text("LED Brightness: " + nf(value, 3), 20, 30);
+
+  ellipse(mouseX, height/2, 80, 80);		// 마우스의 좌우 움직임을 따라오는 원
+}
+
+void serialEvent(Serial port) {			// 수신 버퍼에 수신값이 있으면 자동 호출
+  int signal = port.read();			// 수신 (첫 실행 시 'A' 수신, 그후 'B' 수신)
+  port.write(value);        			// 송신
+}
